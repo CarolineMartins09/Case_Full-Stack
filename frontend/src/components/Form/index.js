@@ -48,7 +48,6 @@ export default function Form({ productList, setProductList }) {
     })
 
     const addProduct = () => {
-        console.log(productList);
         const newPproduct = selectProduct;
         newPproduct.qty = form.qty;
         setProductList([...productList, newPproduct])
