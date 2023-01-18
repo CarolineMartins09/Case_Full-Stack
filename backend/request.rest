@@ -1,0 +1,41 @@
+GET http://localhost:3003/clients
+
+###
+
+GET http://localhost:3003/products
+
+###
+GET http://localhost:3003/stock
+
+###
+POST  http://localhost:3003/clients
+Content-Type: application/json
+
+{
+    "name": "Bananinha"
+}
+
+###
+
+POST http://localhost:3003/order
+Content-Type: application/json
+
+{
+    
+    "fk_client": 1,
+    "delivery_date":"2023-01-30",
+    "products":[
+        {
+            "id":13,
+            "qty":1
+        },
+         {
+            "id":1,
+            "qty":10
+        },
+        {
+            "id":3,
+            "qty":1
+        }
+    ]
+}
