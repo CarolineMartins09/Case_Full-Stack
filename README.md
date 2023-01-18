@@ -88,9 +88,9 @@ DB_DATABASE=
 
 ![](./frontend/src/assets/img/page1nome.png)
 
-**- ao inserir novo cliente e fazer pedido(problemas em somar pedido)**
+**- ao inserir novo cliente e fazer pedido**
 
-![](./frontend/src/assets/img/page1pedido.png)
+![](./frontend/src/assets/img/page2pedido.png)
 
 **- ao finalizar pedido mensagem de sucesso!**
 
