@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-// export const MyButtom = styled.button`
-//   display: flex;
-// `
-
 export const MyOrderForm = styled.form`
   
     div{
@@ -12,7 +8,6 @@ export const MyOrderForm = styled.form`
         justify-content: space-around;
         border: 3px solid #10453b;
         border-radius: 15px;
-        //margin:0 0 1vw 0;
         padding:0.4vw 0 0.2vw 0;
         width: 100%;
         
@@ -41,7 +36,6 @@ export const MyOrderForm = styled.form`
             margin-bottom: 7px;
             font-size: 1vw;
             padding: 0.2vw 1vw 0.2vw 1vw ;
-         //   width: 50vw;
             box-shadow:1px 2px 5px;
         }
     }
@@ -52,9 +46,6 @@ export const MyOrderForm = styled.form`
         justify-content: space-around;
         border: 3px solid #10453b;
         border-radius: 15px;
-        /* margin:0 0 1vw 0;
-        padding:0.4vw 0 0.2vw 0; */
-        
         p{
             font-size: 1.2vw;
             font-weight: bold;
@@ -70,7 +61,6 @@ export const MyOrderForm = styled.form`
             margin-bottom: 7px;
             font-size: 1vw;
             padding: 0.2vw 1vw 0.2vw 1vw ;
-         //   width: 50vw;
             box-shadow:1px 2px 5px;
         }
     }

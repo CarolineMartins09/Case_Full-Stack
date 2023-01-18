@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../../constants/BASE_URL';
 import { useForm } from '../../hooks/useForm';
 import { useRequestData } from '../../hooks/useRequestData';
 import { goToEndOrder } from '../../routers/Coordinator';
@@ -8,29 +9,24 @@ import { MyOrderForm } from './style';
 
 export default function Form({ productList, setProductList }) {
     const navigate = useNavigate();
-    //visible de botões
+ // VARIAVEIS DE ESTADO
     const [visebleBottonClient, setVisibleButtonClient] = useState(true)
     const [visebleBottonProduct, setVisibleButtonProduct] = useState(true)
-    //Da\dos do Form
     const [form, onChange, restForm] = useForm({ client: "", product: "", qty: 1, deliveryDate: "" })
-    //Dados Clientes
-    const [dataClient, isloadingClient, erroClient, upClient, setUpClient] = useRequestData('http://localhost:3003/clients');
-    //Dados Produtos
-    const [dataProduct, isloadingProduct, erroProduct] = useRequestData('http://localhost:3003/products');
-    //---------------------------------- CLIENTEAS ----------------------------------------------------------------
-    //CLIENTE SELECIONADO
+    const [dataClient, isloadingClient, erroClient, upClient, setUpClient] = useRequestData(`${BASE_URL}clients`);
+    const [dataProduct, isloadingProduct, erroProduct] = useRequestData(`${BASE_URL}products`);
+    //---------------------------------- CLIENTES ----------------------------------------------------------------
+
     const selectClient = !isloadingClient && dataClient && dataClient.find((dClient) => {
         return dClient.name === form.client;
     })
 
-
-    //adicionar cliente
     const addCient = () => {
         const body =
         {
             "name": form.client
         }
-        axios.post('http://localhost:3003/client', body, {})
+        axios.post(`${BASE_URL}clients`, body, {})
             .then((response) => {
                 setUpClient(!upClient);
                 console.log(response);
@@ -46,11 +42,11 @@ export default function Form({ productList, setProductList }) {
     }
 
     //---------------------------------- PRODUTOS ----------------------------------------------------------------
-    //CLIENTE SELECIONADO
+
     const selectProduct = !isloadingProduct && dataProduct && dataProduct.find((dProduct) => {
         return dProduct.name === form.product;
     })
-    //add produto
+
     const addProduct = () => {
         console.log(productList);
         const newPproduct = selectProduct;
@@ -74,7 +70,7 @@ export default function Form({ productList, setProductList }) {
                 "products": productListDB
             }
 
-            axios.post('http://localhost:3003/order', body, {})
+            axios.post(`${BASE_URL}order`, body, {})
                 .then((response) => {
                     console.log(response);
                     goToEndOrder(navigate)
@@ -93,17 +89,13 @@ export default function Form({ productList, setProductList }) {
                     <h1>Client:{selectClient.name}</h1>
                 </div>
             }
-            {/* //client */}
+            {/* //CLIENTE */}
             {selectClient && !visebleBottonClient ||
                 <div id='selec-client'>
 
-                    <label htmlFor='client' >Nome do Cliente </label>
+                    <label htmlFor='client' >Nome do Cliente: </label>
                     <input id="client" list='dataClient' name='client' onChange={onChange} value={form.client}></input>
                     <datalist id='dataClient'>
-                        {/* <option> Jr </option>
-                    <option> Paulo </option>
-                    <option> José </option>
-                    <option> Maria </option> */}
                         {isloadingClient && !dataClient && <option>Carregando..</option>}
                         {!isloadingClient && dataClient && dataClient.map((client) => {
                             return <option key={client.id} >
@@ -119,16 +111,12 @@ export default function Form({ productList, setProductList }) {
 
                 </div>
             }
-            {/* //Prtoduct */}
+            {/* //PRODUTOS */}
             {selectClient && !visebleBottonClient &&
                 <div id='select-product'>
-                    <label htmlFor='product' >Produto </label>
+                    <label htmlFor='product' >Produto: </label>
                     <input id="product" list='dataProduct' name='product' value={form.product} onChange={onChange}></input>
                     <datalist id='dataProduct'>
-                        {/* <option> Banana </option>
-                    <option> Mamão </option>
-                    <option> Macã </option>
-                    <option> Goiaba </option> */}
                         {isloadingProduct && !dataProduct && <option>Carregando..</option>}
                         {!isloadingProduct && dataProduct && dataProduct.map((product) => {
                             return <option key={product.id} >
@@ -136,7 +124,7 @@ export default function Form({ productList, setProductList }) {
                             </option>
                         })}
                     </datalist>
-                    <label htmlFor='qty' >Quantidade </label>
+                    <label htmlFor='qty' >Quantidade: </label>
                     <input id="qty" type={"number"} name="qty" value={form.qty} onChange={onChange}></input>
                     <p>R$: {selectProduct && parseFloat(selectProduct.price * form.qty).toFixed(2)}</p>
 
@@ -144,17 +132,17 @@ export default function Form({ productList, setProductList }) {
                         <button type='button' onClick={() => { addProduct() }}>Add</button>
                     }
                     {selectProduct && selectProduct.qty_stock < form.qty &&
-                        <h3>Produto sem Estoque!</h3>
+                        <h3>Estoque indisponivel!</h3>
                     }
                 </div>
             }
-            {/* //Order */}
+            {/* //PEDIDOS */}
             {productList.length > 0 &&
 
                 <div id='order'>
-                    <label htmlFor='deliveryDate' >Data de entrega (DD/MM/AAAA) </label>
+                    <label htmlFor='deliveryDate' >Data de entrega (DD/MM/AAAA):</label>
                     <input id="deliveryDate" name='deliveryDate' onChange={onChange} value={form.deliveryDate}></input>
-                    <button type='submit'>Confirmar </button>
+                    <button type='submit'>Confirmar</button>
                 </div>
             }
         </MyOrderForm>

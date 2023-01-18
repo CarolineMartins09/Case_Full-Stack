@@ -31,7 +31,6 @@ export const MyProduct = styled.div`
         }
 
         input{
-//            margin-bottom: 7px;
             font-size: 1vw;;
             width: fit-content;
             box-shadow:1px 2px 5px;
