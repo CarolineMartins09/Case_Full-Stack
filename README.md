@@ -1,4 +1,4 @@
-# Case_FullStack
+# Case_Full-Stack
 ## Baseado em um teste técnico de desenvolvimento de software.
 ---
 ### Descrição do case:
