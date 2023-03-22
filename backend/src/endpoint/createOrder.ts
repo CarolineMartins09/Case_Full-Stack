@@ -8,9 +8,7 @@ export const createOrder =
     async (req: Request, res: Response) => {
         let errorCode = 400;
 
-
         try {
-            //dados do request
             const delivery_date = req.body.delivery_date;
             const fk_client = req.body.fk_client;
             const products: TProduct[] = req.body.products;
@@ -20,12 +18,10 @@ export const createOrder =
                 throw new Error("Body invalido!")
             }
 
-            //VERIFICAR ESTOQUE
-            
             const idsProducts = products.map((product) =>
                 product.id
             )
-            //whereIn ele aceita um array de ids
+
             const stockProducts = await connection.select("qty_stock")
                 .from("Case_Products")
                 .whereIn('id', idsProducts)
@@ -37,7 +33,7 @@ export const createOrder =
             }
 
             const order = new OrderDatabases()
-            //fazer pedido atualizar estoque
+
             await products.forEach(async product => {
 
                 await order.create(
@@ -48,7 +44,6 @@ export const createOrder =
                         fk_client,
                         fk_product: product.id
                     })
-                //get stock
 
                 const getStock = await connection.select("qty_stock")
                     .from("Case_Products")
@@ -57,7 +52,6 @@ export const createOrder =
 
                 const stockAtual = Number(getStock[0].qty_stock);
 
-                //atualizar stock
                 await connection("Case_Products")
                     .where({ id: product.id })
                     .update({ qty_stock: stockAtual - product.qty })
