@@ -4,7 +4,6 @@ import { MyProduct } from './style';
 export default function Product({ product, productList, setProductList, removeProduct }) {
 
   const updateQuatidade = (e) => {
-    console.log(product.qty_stock);
     const currenQty = e.target.value;
     const productsUpdate = productList.map((p) => {
       if (p.id === product.id) {

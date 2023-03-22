@@ -9,15 +9,15 @@ import { MyOrderForm } from './style';
 
 export default function Form({ productList, setProductList }) {
     const navigate = useNavigate();
- // VARIAVEIS DE ESTADO
+
     const [visebleBottonClient, setVisibleButtonClient] = useState(true)
-    const [visebleBottonProduct, setVisibleButtonProduct] = useState(true)
-    const [form, onChange, restForm] = useForm({ client: "", product: "", qty: 1, deliveryDate: "" })
+    // const [visebleBottonProduct, setVisibleButtonProduct] = useState(true)
+    const [form, onChange] = useForm({ client: "", product: "", qty: 1, deliveryDate: "" })
     const [dataClient, isloadingClient, erroClient, upClient, setUpClient] = useRequestData(`${BASE_URL}clients`);
     const [dataProduct, isloadingProduct, erroProduct] = useRequestData(`${BASE_URL}products`);
     //---------------------------------- CLIENTES ----------------------------------------------------------------
 
-    const selectClient = !isloadingClient && dataClient && dataClient.find((dClient) => {
+    const selectClient = dataClient && dataClient.find((dClient) => {
         return dClient.name === form.client;
     })
 
@@ -30,20 +30,17 @@ export default function Form({ productList, setProductList }) {
             .then((response) => {
                 setUpClient(!upClient);
                 console.log(response);
-
             }
             ).catch((error) => {
                 console.log(error.message);
             })
     }
-    //selecionar cliente
+
     const selectCientButton = () => {
         setVisibleButtonClient(!visebleBottonClient)
     }
 
-    //---------------------------------- PRODUTOS ----------------------------------------------------------------
-
-    const selectProduct = !isloadingProduct && dataProduct && dataProduct.find((dProduct) => {
+    const selectProduct =  dataProduct && dataProduct.find((dProduct) => {
         return dProduct.name === form.product;
     })
 
@@ -52,7 +49,6 @@ export default function Form({ productList, setProductList }) {
         newPproduct.qty = form.qty;
         setProductList([...productList, newPproduct])
     }
-    //---------------------------------- ORDER ----------------------------------------------------------------
 
     const makeOrder = (e) => {
         e.preventDefault();
@@ -88,7 +84,7 @@ export default function Form({ productList, setProductList }) {
                     <h1>Client:{selectClient.name}</h1>
                 </div>
             }
-            {/* //CLIENTE */}
+
             {selectClient && !visebleBottonClient ||
                 <div id='selec-client'>
 
@@ -110,13 +106,12 @@ export default function Form({ productList, setProductList }) {
 
                 </div>
             }
-            {/* //PRODUTOS */}
+
             {selectClient && !visebleBottonClient &&
                 <div id='select-product'>
                     <label htmlFor='product' >Produto: </label>
                     <input id="product" list='dataProduct' name='product' value={form.product} onChange={onChange}></input>
                     <datalist id='dataProduct'>
-                        {isloadingProduct && !dataProduct && <option>Carregando..</option>}
                         {!isloadingProduct && dataProduct && dataProduct.map((product) => {
                             return <option key={product.id} >
                                 {product.name}
@@ -126,18 +121,14 @@ export default function Form({ productList, setProductList }) {
                     <label htmlFor='qty' >Quantidade: </label>
                     <input id="qty" type={"number"} name="qty" value={form.qty} onChange={onChange}></input>
                     <p>R$: {selectProduct && parseFloat(selectProduct.price * form.qty).toFixed(2)}</p>
-
-                    {selectProduct && visebleBottonProduct && selectProduct.qty_stock >= form.qty &&
-                        <button type='button' onClick={() => { addProduct() }}>Add</button>
-                    }
+                    <button type='button' onClick={() => { addProduct() }}>Add</button>
                     {selectProduct && selectProduct.qty_stock < form.qty &&
                         <h3>Estoque indisponivel!</h3>
                     }
                 </div>
             }
-            {/* //PEDIDOS */}
-            {productList.length > 0 &&
 
+            {productList.length > 0 &&
                 <div id='order'>
                     <label htmlFor='deliveryDate' >Data de entrega (DD/MM/AAAA):</label>
                     <input id="deliveryDate" name='deliveryDate' onChange={onChange} value={form.deliveryDate}></input>

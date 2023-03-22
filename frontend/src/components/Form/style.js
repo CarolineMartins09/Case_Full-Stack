@@ -6,14 +6,14 @@ export const MyOrderForm = styled.form`
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        border: 3px solid #10453b;
+        border: 3px solid #6b1985;
         border-radius: 15px;
         padding:0.4vw 0 0.2vw 0;
         width: 100%;
         
         button{
             background: lavender;
-            box-shadow: 0.5px 1px 4px black;
+            box-shadow: 0.5px 1px 4px #6b1985;
             font-size: 1vw;
             font-weight: bold;
             color: blue;
@@ -21,7 +21,7 @@ export const MyOrderForm = styled.form`
             margin-left:1vw;
 
             :active{
-                background-color: lightgrey;
+                background-color: #6b1985;
             }
 
         }
@@ -44,7 +44,7 @@ export const MyOrderForm = styled.form`
         flex-direction: row;
         align-items:center;
         justify-content: space-around;
-        border: 3px solid #10453b;
+        border: 3px solid #6b1985;
         border-radius: 15px;
         p{
             font-size: 1.2vw;
