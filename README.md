@@ -53,6 +53,7 @@ produto e a quantidade em estoque.
 
 ### Link Surge com deploy:
 **[SURGE](https://greasy-reading.surge.sh/)**
+**[SURGE](better-education.surge.sh)**
 
 ---
 ### Como Testar:
