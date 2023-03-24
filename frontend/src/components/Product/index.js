@@ -16,7 +16,8 @@ export default function Product({ product, productList, setProductList, removePr
   return (
     <MyProduct>
       <p>{product.name}</p>
-      <input id="qty" type={"number"} name="qty" min="0" max={(product.qty_stock.toString())} value={product.qty} onChange={updateQuatidade}></input>
+      <input id="qty" type={"number"} name="qty" min="0" max={(product.qty_stock.toString())} 
+      value={product.qty} onChange={updateQuatidade}></input>
       <p>{parseFloat(product.price * product.qty).toFixed(2)}</p>
       <button type='button' onClick={() => { removeProduct(product.id) }}>Remover</button>
     </MyProduct>

@@ -5,11 +5,12 @@ export const MyOrderForm = styled.form`
     div{
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: center;
         border: 3px solid #6b1985;
         border-radius: 15px;
-        padding:0.4vw 0 0.2vw 0;
-        width: 100%;
+        padding:1vw 0 0.2vw 0;
+        width: 50% ;
+        margin-left: 25%;
         
         button{
             background: lavender;
@@ -41,21 +42,21 @@ export const MyOrderForm = styled.form`
     }
     #select-product{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items:center;
-        justify-content: space-around;
+        justify-content: space-evenly;
         border: 3px solid #6b1985;
-        border-radius: 15px;
+        border-radius: 10px;
         p{
-            font-size: 1.2vw;
+            font-size: 1.8vw;
             font-weight: bold;
         }
         label{
-            font-size: 1vw;
+            font-size: 2vw;
             font-weight: bold;
             text-transform: uppercase;
-            margin-bottom: 7px;
-            margin-top: 7px;
+            margin-bottom: 1%;
+            margin-top: 0.5%;
         }
         input{
             margin-bottom: 7px;
