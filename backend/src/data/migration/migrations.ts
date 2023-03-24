@@ -60,7 +60,7 @@ VALUES (1 , 'Tomate Italiano', 7.99 , 700),
 
 `)
 
-    .then(() => { console.log("Tabelas criadas com sucesso!") })
-    .catch(printError)
+  .then(() => { console.log("Tabelas criadas com sucesso!") })
+  .catch(printError)
 
-    createTable()
+createTable()

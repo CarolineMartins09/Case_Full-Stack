@@ -5,15 +5,16 @@ export const MyOrderForm = styled.form`
     div{
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
-        border: 3px solid #10453b;
+        justify-content: center;
+        border: 3px solid #6b1985;
         border-radius: 15px;
-        padding:0.4vw 0 0.2vw 0;
-        width: 100%;
+        padding:1vw 0 0.2vw 0;
+        width: 50% ;
+        margin-left: 25%;
         
         button{
             background: lavender;
-            box-shadow: 0.5px 1px 4px black;
+            box-shadow: 0.5px 1px 4px #6b1985;
             font-size: 1vw;
             font-weight: bold;
             color: blue;
@@ -21,7 +22,7 @@ export const MyOrderForm = styled.form`
             margin-left:1vw;
 
             :active{
-                background-color: lightgrey;
+                background-color: #6b1985;
             }
 
         }
@@ -41,21 +42,21 @@ export const MyOrderForm = styled.form`
     }
     #select-product{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items:center;
-        justify-content: space-around;
-        border: 3px solid #10453b;
-        border-radius: 15px;
+        justify-content: space-evenly;
+        border: 3px solid #6b1985;
+        border-radius: 10px;
         p{
-            font-size: 1.2vw;
+            font-size: 1.8vw;
             font-weight: bold;
         }
         label{
-            font-size: 1vw;
+            font-size: 2vw;
             font-weight: bold;
             text-transform: uppercase;
-            margin-bottom: 7px;
-            margin-top: 7px;
+            margin-bottom: 1%;
+            margin-top: 0.5%;
         }
         input{
             margin-bottom: 7px;

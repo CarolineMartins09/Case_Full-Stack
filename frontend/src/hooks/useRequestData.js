@@ -9,7 +9,6 @@ export const useRequestData = (url, headers) => {
 
 
   useEffect(() => {
-    console.log("foi !!!")
     setIsLoading(true)
     axios
       .get(url, headers)

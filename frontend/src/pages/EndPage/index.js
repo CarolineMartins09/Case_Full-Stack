@@ -5,6 +5,7 @@ import { goToHome } from '../../routers/Coordinator';
 import { MyEndPage } from './style';
 
 export default function EndPage() {
+  
   const navigate = useNavigate()
   setTimeout(() => {
     goToHome(navigate)
