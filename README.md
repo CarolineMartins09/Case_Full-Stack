@@ -82,15 +82,18 @@ DB_DATABASE=
 
 **- ao abrir site**
 
-![](./frontend/src/assets/img/page1.png)
+![](./frontend/src/assets/img/inicio.png)
 
 **- ao inserir nome já cadastrado**
 
-![](./frontend/src/assets/img/page1nome.png)
+![](./frontend/src/assets/img/inicio2.png)
 
 **- ao inserir novo cliente e fazer pedido**
 
-![](./frontend/src/assets/img/page2pedido.png)
+![](./frontend/src/assets/img/inicio3.png)
+
+**- ao inserir vários pedidos**
+![](./frontend/src/assets/img/inicio4.png)
 
 **- ao finalizar pedido mensagem de sucesso!**
 
