@@ -98,4 +98,4 @@ DB_DATABASE=
 
 **- ao finalizar pedido mensagem de sucesso!**
 
-![](./frontend/src/assets/img/final.png)
+![](./frontend/src/assets/img/fim5.png)
