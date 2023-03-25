@@ -13,8 +13,8 @@ export default function Form({ productList, setProductList }) {
     const [visebleBottonClient, setVisibleButtonClient] = useState(true)
     const [visebleBottonProduct, setVisibleButtonProduct] = useState(true)
     const [form, onChange] = useForm({ client: "", product: "", qty: 1, deliveryDate: "" })
-    const [dataClient, isloadingClient, erroClient, upClient, setUpClient] = useRequestData(`${BASE_URL}clients`);
-    const [dataProduct, isloadingProduct, erroProduct] = useRequestData(`${BASE_URL}products`);
+    const [dataClient, isloadingClient, erroClient, upClient, setUpClient] = useRequestData(`https://full-stack-5o0a.onrender.com/clients`);
+    const [dataProduct, isloadingProduct, erroProduct] = useRequestData(`https://full-stack-5o0a.onrender.com/products`);
     //---------------------------------- CLIENTES ----------------------------------------------------------------
 
     const selectClient = dataClient && dataClient.find((dClient) => {
@@ -26,7 +26,7 @@ export default function Form({ productList, setProductList }) {
         {
             "name": form.client
         }
-        axios.post(`${BASE_URL}clients`, body, {})
+        axios.post(`https://full-stack-5o0a.onrender.com/clients`, body, {})
             .then((response) => {
                 setUpClient(!upClient);
                 console.log(response);
@@ -41,7 +41,7 @@ export default function Form({ productList, setProductList }) {
     }
 
     const selectProduct = dataProduct && dataProduct.find((dProduct) => {
-        return dProduct.name == form.product;
+        return dProduct.name === form.product;
     })
 
 
@@ -79,7 +79,7 @@ export default function Form({ productList, setProductList }) {
 
     return (
         <MyOrderForm onSubmit={makeOrder}>
-            {selectClient && !visebleBottonClient &&
+            {!isloadingClient && selectClient && !visebleBottonClient &&
                 <div>
                     <h1>Client:{selectClient.name}</h1>
                 </div>
@@ -108,17 +108,17 @@ export default function Form({ productList, setProductList }) {
             }
 
             {selectClient && !visebleBottonClient &&
-             <div id='select-product'>
-             <label htmlFor='product' >Produto: </label>
-             <input id="product" list='dataProduct' name='product' value={form.product} onChange={onChange}></input>
-             <datalist id='dataProduct'>
-                 {isloadingProduct && !dataProduct && <option>Carregando..</option>}
-                 {!isloadingProduct && dataProduct && dataProduct.map((product) => {
-                     return <option key={product.id} >
-                         {product.name}
-                     </option>
-                 })}
-             </datalist>
+                <div id='select-product'>
+                    <label htmlFor='product' >Produto: </label>
+                    <input id="product" list='dataProduct' name='product' value={form.product} onChange={onChange}></input>
+                    <datalist id='dataProduct'>
+                        {isloadingProduct && !dataProduct && <option>Carregando..</option>}
+                        {!isloadingProduct && dataProduct && dataProduct.map((product) => {
+                            return <option key={product.id} >
+                                {product.name}
+                            </option>
+                        })}
+                    </datalist>
 
                     <label htmlFor='qty' >Quantidade: </label>
                     <input id="qty" type={"number"} name="qty" value={form.qty} onChange={onChange}></input>
